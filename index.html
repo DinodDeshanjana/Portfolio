@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dinod Deshanjana</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="mediaqueries.css" />
+    <script src="https://unpkg.com/scrollreveal"></script>
+
+
+</head>
+<body>
+    <nav id="desktop-nav">
+        <div class="logo">Dinod Deshanjana</div>
+        <div>
+            <ul class="nav-links">
+                <li><a href="#about">About</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!--Mobile Navigation-->
+  
+    <nav id="hamburger-nav">
+        <div class="logo">Dinod Deshanjana</div>
+        <div class="hamburger-menu">
+          <div class="hamburger-icon" onclick="toggleMenu()">
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+          <div class="menu-links">
+            <li><a href="#about" onclick="toggleMenu()">About</a></li>
+            <li><a href="#projects" onclick="toggleMenu()">Projects</a></li>
+            <li><a href="#contact" onclick="toggleMenu()">Contact</a></li>
+          </div>
+        </div>
+      </nav>
+
+    <section class="profile" id="profile">
+        <div class="section__pic-contaner">
+        <img src="./assets/profile1.png" alt="Dinod">
+        </div>
+        <div class="section__text">
+            <p class="section__text__p1">Hello, i'm</p>
+            <h1 class="title">Dinod Deshanjana</h1>
+            <p class="section__text__p2">Undergraduate</p>
+            <div class="btn-container">
+                <button class="btn btn-color-2" onclick="window.open('https://drive.google.com/file/d/18nR0wSOyXyhIyDPROaly17wkhv1OpdEd/view?usp=sharing')">Download CV</button>
+                <button class="btn btn-color-1" onclick="location.href='#contact'">Contact Info</button>
+            </div>
+            <div class="socials-container" id="socials-container">
+                <img src="./assets/linkedin.png" alt="linkedin profile" class="icon" onclick="window.open('https://www.linkedin.com/in/dinod-deshanjana/', '_blank');">
+                <img src="./assets/github.png" alt="github profile" class="icon" onclick="window.open('https://github.com/DinodDeshanjana', '_blank');">
+
+            </div>
+        </div>
+    </section>
+
+    <section class="about" id="about">
+        <p class="section__text__p1">Get To Know More</p>
+        <h1 class="title">About Me</h1>
+        <div class="section-container">
+            <div class="section__pic-container">
+                <img src="./assets/about.jpg" alt="profile pic" class="about-pic">
+            </div>
+            <div class="about-details-container">
+                <div class="about-containers">
+
+                
+                <div class="details-container" style="padding: 20px; font-family: Poppins;">
+                    
+                    <h2 style="padding-top: 4px;">About Me</h2><br>
+
+                    <p style="text-align: justify; padding: 15px; font-family: Poppins;" >Hi, I'm Dinod Deshanjana, an IT enthusiast currently studying for a Bachelor of Science in Management and Information Technology (B.Sc. in MIT) at South Eastern University of Sri Lanka. I have also completed a Diploma in Information Technology at Wayamba University of Sri Lanka. I am passionate about learning new technologies and using them to build real-world solutions.<br><br> 
+
+                    I enjoy researching and exploring different topics in IT, always looking for ways to expand my knowledge. I have developed a website for an online three-wheeler booking system, which showcases my skills in web development and system design. In addition, I have a strong interest in IoT and Arduino development. I have built small projects using Arduino and would love to keep experimenting with new ideas.
+                        </p>
+                </div>
+            </div>
+            
+            </div>
+            
+        </div>
+
+        <img src="./assets/arrow.png" alt="" class="icon arrow" onclick="location.href='./#projects'">
+    </section>
+
+
+<section class="project" id="projects">
+  <p class="section__text__p1">Browse My Recent</p>
+  <h1 class="title">Projects</h1>
+
+  <div class="projects-grid">
+    <!-- Project 1 -->
+    <div class="project-card">
+      <img src="./assets/t.png" alt="Three-wheeler Booking System" class="project-img">
+      <h2 class="project-title">Three-wheeler Booking System</h2>
+      <p>
+        Built with HTML, CSS, JavaScript, PHP, and MySQL, this tuk-tuk booking system allows foreign tourists to easily book three-wheelers online. It replaces outdated booking methods with a user-friendly interface and real-time updates.
+      </p>
+      <button class="btn project-btn" onclick="window.open('https://github.com/DinodDeshanjana/Three-Wheeler-Rental-System-project.git', '_blank');">GitHub</button>
+    </div>
+
+    <!-- Project 2 -->
+    <div class="project-card">
+      <img src="./assets/r.jpg" alt="Arduino Robot Pet Project" class="project-img">
+      <h2 class="project-title">Arduino Robot Pet Project</h2>
+      <p>
+        The Arduino Car project is a smart vehicle that can detect obstacles and be controlled remotely via mobile. It uses sensors and motors for smooth autonomous navigation.
+      </p>
+      <button class="btn project-btn" onclick="window.open('https://github.com/DinodDeshanjana/Arduino-Robot-Car.git', '_blank');">GitHub</button>
+    </div>
+
+    <!-- Project 3 -->
+    <div class="project-card">
+      <img src="./assets/p.png" alt="Personal Portfolio Website" class="project-img">
+      <h2 class="project-title">Personal Portfolio Website</h2>
+      <p>
+        Created using HTML, CSS, and JavaScript, this responsive portfolio showcases my projects and skills. It’s designed with clean structure, modern layout, and accessibility in mind.
+      </p>
+      <button class="btn project-btn" onclick="window.open('https://github.com/DinodDeshanjana/Portfolio.git', '_blank');">GitHub</button>
+    </div>
+
+    <!-- Add more projects below -->
+    <div class="project-card">
+      <img src="./assets/Cal.png" alt="GPA Calculator" class="project-img">
+      <h2 class="project-title">GPA Calculator Web App</h2>
+      <p>
+        A lightweight GPA Calculator built with HTML, CSS, and JavaScript that allows students to add course codes, credits, and grades to instantly compute GPA.
+      </p>
+      <button class="btn project-btn" onclick="window.open('https://github.com/DinodDeshanjana/GPA-Calculator.git', '_blank');">GitHub</button>
+    </div>
+  </div>
+
+  <img
+    src="./assets/arrow.png"
+    alt="Arrow icon"
+    class="icon arrow"
+    onclick="location.href='./#contact'"
+  />
+</section>
+
+
+    <section class="contact" id="contact">
+        <p class="section__text__p1">Get in Touch</p>
+        <h1 class="title">Contact Me</h1>
+        <div class="contact-info-upper-container">
+          <div class="contact-info-container">
+            <img
+              src="./assets/email.png"
+              alt="Email icon"
+              class="icon contact-icon email-icon"
+            />
+            <p><a href="mailto:examplemail@gmail.com" target="_blank">dinoddeshanjana20@gmail.com</a></p>
+          </div>
+          <div class="contact-info-container">
+            <img
+              src="./assets/linkedin.png"
+              alt="LinkedIn icon"
+              class="icon contact-icon"
+            />
+            <p><a href="https://www.linkedin.com/in/dinod-deshanjana/" target="_blank">LinkedIn</a></p>
+          </div>
+        </div>
+    </section>
+
+    <footer>
+        <nav>
+            <div class="nav-links-container">
+                <ul class="nav-links">
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#projects">Projects</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </div>
+        </nav>
+        <p>Copyright &#169; 2025 Dinod Deshanjana. All Rights Reserved.</p>
+    </footer>
+    <script src="script.js"></script>
+</body>
+</html>
