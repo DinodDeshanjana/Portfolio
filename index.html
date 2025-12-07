@@ -1,185 +1,672 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dinod Deshanjana</title>
-    <link rel="stylesheet" href="style.css" />
-    <link rel="stylesheet" href="mediaqueries.css" />
-    <script src="https://unpkg.com/scrollreveal"></script>
+    <title>Alex Dev | Full Stack Developer</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
 
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            dark: '#0f172a',
+                            light: '#f8fafc',
+                            accent: '#6366f1', // Indigo 500
+                            cyan: '#06b6d4',   // Cyan 500
+                        }
+                    },
+                    animation: {
+                        'blob': 'blob 7s infinite',
+                        'fade-up': 'fadeUp 0.8s ease-out forwards',
+                    },
+                    keyframes: {
+                        blob: {
+                            '0%': { transform: 'translate(0px, 0px) scale(1)' },
+                            '33%': { transform: 'translate(30px, -50px) scale(1.1)' },
+                            '66%': { transform: 'translate(-20px, 20px) scale(0.9)' },
+                            '100%': { transform: 'translate(0px, 0px) scale(1)' },
+                        },
+                        fadeUp: {
+                            '0%': { opacity: '0', transform: 'translateY(20px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
 
+    <style>
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #0f172a;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #334155;
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #475569;
+        }
+
+        /* Glassmorphism Utilities */
+        .glass {
+            background: rgba(15, 23, 42, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* Tech Grid Background */
+        .tech-grid {
+            background-size: 40px 40px;
+            background-image: linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+        }
+
+        .text-gradient {
+            background: linear-gradient(to right, #6366f1, #06b6d4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Animation Utility Classes */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
 </head>
-<body>
-    <nav id="desktop-nav">
-        <div class="logo">Dinod Deshanjana</div>
-        <div>
-            <ul class="nav-links">
-                <li><a href="#about">About</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
+
+<body class="bg-slate-50 text-slate-900 font-sans antialiased selection:bg-brand-accent selection:text-white">
+
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 glass transition-all duration-300" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <!-- Logo -->
+                <div class="flex-shrink-0 cursor-pointer" onclick="window.scrollTo(0,0)">
+                    <span class="text-2xl font-bold text-white tracking-tighter">
+                        Dinod Deshanjana<span class="text-brand-cyan"></span>
+                    </span>
+                </div>
+
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex space-x-8 items-center">
+                    <a href="#about"
+                        class="text-slate-300 hover:text-white hover:text-brand-cyan transition-colors text-sm font-medium uppercase tracking-wider">About</a>
+                    <a href="#skills"
+                        class="text-slate-300 hover:text-white hover:text-brand-cyan transition-colors text-sm font-medium uppercase tracking-wider">Skills</a>
+                    <a href="#projects"
+                        class="text-slate-300 hover:text-white hover:text-brand-cyan transition-colors text-sm font-medium uppercase tracking-wider">Projects</a>
+                    <a href="#contact"
+                        class="px-5 py-2.5 rounded-full bg-gradient-to-r from-brand-accent to-brand-cyan text-white font-semibold text-sm hover:shadow-lg hover:shadow-brand-accent/30 transition-all transform hover:-translate-y-0.5">Let's
+                        Talk</a>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-btn" class="text-slate-300 hover:text-white focus:outline-none">
+                        <i class="fas fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Panel -->
+        <div id="mobile-menu" class="hidden md:hidden bg-slate-900 border-t border-slate-800">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="#about"
+                    class="block px-3 py-2 rounded-md text-base font-medium text-slate-300 hover:text-white hover:bg-slate-800">About</a>
+                <a href="#skills"
+                    class="block px-3 py-2 rounded-md text-base font-medium text-slate-300 hover:text-white hover:bg-slate-800">Skills</a>
+                <a href="#projects"
+                    class="block px-3 py-2 rounded-md text-base font-medium text-slate-300 hover:text-white hover:bg-slate-800">Projects</a>
+                <a href="#contact"
+                    class="block px-3 py-2 rounded-md text-base font-medium text-brand-cyan hover:text-brand-accent">Contact
+                    Me</a>
+            </div>
         </div>
     </nav>
 
-    <!--Mobile Navigation-->
-  
-    <nav id="hamburger-nav">
-        <div class="logo">Dinod Deshanjana</div>
-        <div class="hamburger-menu">
-          <div class="hamburger-icon" onclick="toggleMenu()">
-            <span></span>
-            <span></span>
-            <span></span>
-          </div>
-          <div class="menu-links">
-            <li><a href="#about" onclick="toggleMenu()">About</a></li>
-            <li><a href="#projects" onclick="toggleMenu()">Projects</a></li>
-            <li><a href="#contact" onclick="toggleMenu()">Contact</a></li>
-          </div>
+    <!-- Hero Section -->
+    <section class="relative min-h-screen flex items-center justify-center bg-brand-dark overflow-hidden pt-20">
+        <!-- Abstract Background Shapes -->
+        <div class="absolute inset-0 tech-grid opacity-20"></div>
+        <div
+            class="absolute top-0 -left-4 w-72 h-72 bg-brand-accent rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob">
         </div>
-      </nav>
-
-    <section class="profile" id="profile">
-        <div class="section__pic-contaner">
-        <img src="./assets/profile1.png" alt="Dinod">
+        <div
+            class="absolute top-0 -right-4 w-72 h-72 bg-brand-cyan rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-2000">
         </div>
-        <div class="section__text">
-            <p class="section__text__p1">Hello, i'm</p>
-            <h1 class="title">Dinod Deshanjana</h1>
-            <p class="section__text__p2">Undergraduate</p>
-            <div class="btn-container">
-                <button class="btn btn-color-2" onclick="window.open('https://drive.google.com/file/d/18nR0wSOyXyhIyDPROaly17wkhv1OpdEd/view?usp=sharing')">Download CV</button>
-                <button class="btn btn-color-1" onclick="location.href='#contact'">Contact Info</button>
-            </div>
-            <div class="socials-container" id="socials-container">
-                <img src="./assets/linkedin.png" alt="linkedin profile" class="icon" onclick="window.open('https://www.linkedin.com/in/dinod-deshanjana/', '_blank');">
-                <img src="./assets/github.png" alt="github profile" class="icon" onclick="window.open('https://github.com/DinodDeshanjana', '_blank');">
-
-            </div>
+        <div
+            class="absolute -bottom-8 left-20 w-72 h-72 bg-purple-600 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-4000">
         </div>
-    </section>
 
-    <section class="about" id="about">
-        <p class="section__text__p1">Get To Know More</p>
-        <h1 class="title">About Me</h1>
-        <div class="section-container">
-            <div class="section__pic-container">
-                <img src="./assets/about.jpg" alt="profile pic" class="about-pic">
+        <div
+            class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-center gap-10 md:gap-20 z-10">
+            <!-- Profile Image (Left Side) - Resized Smaller -->
+            <div class="relative w-72 h-72 md:w-96 md:h-96 flex-shrink-0">
+                <div
+                    class="absolute inset-0 bg-gradient-to-tr from-brand-accent to-brand-cyan rounded-full blur-2xl opacity-30">
+                </div>
+                <img src="profile.jpg" alt="Dinod Deshanjana"
+                    class="relative w-full h-full object-cover rounded-full border-4 border-slate-800 shadow-2xl">
             </div>
-            <div class="about-details-container">
-                <div class="about-containers">
 
-                
-                <div class="details-container" style="padding: 20px; font-family: Poppins;">
-                    
-                    <h2 style="padding-top: 4px;">About Me</h2><br>
+            <!-- Text Content (Right Side - Centered) -->
+            <div class="flex flex-col items-center text-center order-2">
+                <h2 class="text-lg text-slate-400 font-medium mb-2 animate-fade-up" style="animation-delay: 0.1s;">
+                    Hello, I'm</h2>
 
-                    <p style="text-align: justify; padding: 15px; font-family: Poppins;" >Hi, I'm Dinod Deshanjana, an IT enthusiast currently studying for a Bachelor of Science in Management and Information Technology (B.Sc. in MIT) at South Eastern University of Sri Lanka. I have also completed a Diploma in Information Technology at Wayamba University of Sri Lanka. I am passionate about learning new technologies and using them to build real-world solutions.<br><br> 
+                <h1 class="text-4xl md:text-6xl font-extrabold text-white tracking-tight mb-3 animate-fade-up"
+                    style="animation-delay: 0.15s;">
+                    <span class="text-gradient">Dinod Deshanjana</span>
+                </h1>
 
-                    I enjoy researching and exploring different topics in IT, always looking for ways to expand my knowledge. I have developed a website for an online three-wheeler booking system, which showcases my skills in web development and system design. In addition, I have a strong interest in IoT and Arduino development. I have built small projects using Arduino and would love to keep experimenting with new ideas.
-                        </p>
+                <h2 class="text-xl md:text-2xl font-semibold text-slate-300 mb-6 animate-fade-up"
+                    style="animation-delay: 0.2s;">
+                    Undergraduate
+                </h2>
+
+                <div class="flex flex-row gap-4 animate-fade-up justify-center" style="animation-delay: 0.3s;">
+                    <!-- <a href="#"
+                        class="px-6 py-2.5 rounded-full bg-white text-slate-900 font-bold hover:bg-slate-100 transition-colors shadow-md border border-white text-sm md:text-base">
+                        Download CV
+                    </a>-->
+                    <a href="#contact"
+                        class="px-6 py-2.5 rounded-full bg-slate-800 border border-slate-600 text-white font-medium hover:bg-slate-700 hover:border-slate-500 transition-all text-sm md:text-base">
+                        Contact Info
+                    </a>
+                </div>
+
+                <!-- Social Icons (Centered) -->
+                <div class="mt-8 flex gap-6 animate-fade-up justify-center" style="animation-delay: 0.4s;">
+                    <a href="https://www.linkedin.com/in/dinod-deshanjana/"
+                        class="text-3xl text-white hover:text-brand-cyan transition-transform hover:scale-110"><i
+                            class="fab fa-linkedin"></i></a>
+                    <a href="https://github.com/DinodDeshanjana"
+                        class="text-3xl text-white hover:text-brand-cyan transition-transform hover:scale-110"><i
+                            class="fab fa-github"></i></a>
                 </div>
             </div>
-            
-            </div>
-            
         </div>
 
-        <img src="./assets/arrow.png" alt="" class="icon arrow" onclick="location.href='./#projects'">
-    </section>
-
-
-<section class="project" id="projects">
-  <p class="section__text__p1">Browse My Recent</p>
-  <h1 class="title">Projects</h1>
-
-  <div class="projects-grid">
-    <!-- Project 1 -->
-    <div class="project-card">
-      <img src="./assets/t.png" alt="Three-wheeler Booking System" class="project-img">
-      <h2 class="project-title">Three-wheeler Booking System</h2>
-      <p>
-        Built with HTML, CSS, JavaScript, PHP, and MySQL, this tuk-tuk booking system allows foreign tourists to easily book three-wheelers online. It replaces outdated booking methods with a user-friendly interface and real-time updates.
-      </p>
-      <button class="btn project-btn" onclick="window.open('https://github.com/DinodDeshanjana/Three-Wheeler-Rental-System-project.git', '_blank');">GitHub</button>
-    </div>
-
-    <!-- Project 2 -->
-    <div class="project-card">
-      <img src="./assets/r.jpg" alt="Arduino Robot Pet Project" class="project-img">
-      <h2 class="project-title">Arduino Robot Pet Project</h2>
-      <p>
-        The Arduino Car project is a smart vehicle that can detect obstacles and be controlled remotely via mobile. It uses sensors and motors for smooth autonomous navigation.
-      </p>
-      <button class="btn project-btn" onclick="window.open('https://github.com/DinodDeshanjana/Arduino-Robot-Car.git', '_blank');">GitHub</button>
-    </div>
-
-    <!-- Project 3 -->
-    <div class="project-card">
-      <img src="./assets/p.png" alt="Personal Portfolio Website" class="project-img">
-      <h2 class="project-title">Personal Portfolio Website</h2>
-      <p>
-        Created using HTML, CSS, and JavaScript, this responsive portfolio showcases my projects and skills. It’s designed with clean structure, modern layout, and accessibility in mind.
-      </p>
-      <button class="btn project-btn" onclick="window.open('https://github.com/DinodDeshanjana/Portfolio.git', '_blank');">GitHub</button>
-    </div>
-
-    <!-- Add more projects below -->
-    <div class="project-card">
-      <img src="./assets/Cal.png" alt="GPA Calculator" class="project-img">
-      <h2 class="project-title">GPA Calculator Web App</h2>
-      <p>
-        A lightweight GPA Calculator built with HTML, CSS, and JavaScript that allows students to add course codes, credits, and grades to instantly compute GPA.
-      </p>
-      <button class="btn project-btn" onclick="window.open('https://github.com/DinodDeshanjana/GPA-Calculator.git', '_blank');">GitHub</button>
-    </div>
-  </div>
-
-  <img
-    src="./assets/arrow.png"
-    alt="Arrow icon"
-    class="icon arrow"
-    onclick="location.href='./#contact'"
-  />
-</section>
-
-
-    <section class="contact" id="contact">
-        <p class="section__text__p1">Get in Touch</p>
-        <h1 class="title">Contact Me</h1>
-        <div class="contact-info-upper-container">
-          <div class="contact-info-container">
-            <img
-              src="./assets/email.png"
-              alt="Email icon"
-              class="icon contact-icon email-icon"
-            />
-            <p><a href="mailto:examplemail@gmail.com" target="_blank">dinoddeshanjana20@gmail.com</a></p>
-          </div>
-          <div class="contact-info-container">
-            <img
-              src="./assets/linkedin.png"
-              alt="LinkedIn icon"
-              class="icon contact-icon"
-            />
-            <p><a href="https://www.linkedin.com/in/dinod-deshanjana/" target="_blank">LinkedIn</a></p>
-          </div>
+        <!-- Scroll Indicator -->
+        <div class="absolute bottom-6 left-1/2 transform -translate-x-1/2 animate-bounce">
+            <a href="#about" class="text-slate-500 hover:text-white transition-colors">
+                <i class="fas fa-chevron-down text-lg"></i>
+            </a>
         </div>
     </section>
 
-    <footer>
-        <nav>
-            <div class="nav-links-container">
-                <ul class="nav-links">
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#projects">Projects</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                </ul>
+    <!-- About Section -->
+    <section id="about" class="py-24 bg-white relative scroll-mt-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+
+                <!-- Image/Visual -->
+                <div class="relative reveal">
+                    <div
+                        class="absolute inset-0 bg-gradient-to-tr from-brand-accent to-brand-cyan rounded-2xl transform rotate-3 scale-105 opacity-20">
+                    </div>
+                    <div class="relative rounded-2xl overflow-hidden shadow-2xl group h-[450px]">
+                        <img class="w-full h-full object-cover" src="profile1.jpg" alt="About Me"
+                            class="w-full h-auto object-cover transform transition-transform duration-700 group-hover:scale-105">
+                        <div
+                            class="absolute inset-0 bg-brand-dark/10 group-hover:bg-transparent transition-colors duration-300">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Text Content -->
+                <div class="reveal">
+                    <h2 class="text-3xl md:text-4xl font-bold text-slate-900 mb-6">About Me</h2>
+                    <p class="text-lg text-slate-600 mb-6 leading-relaxed text-justify">
+                        I am a third-year student pursuing a B.Sc. in Management and Information Technology (MIT) at the
+                        South Eastern University of Sri Lanka, and I hold a Diploma in IT (Distinction) from Wayamba
+                        University. I am passionate about researching new technologies and continuously improving my
+                        skills in the IT field.
+
+
+                    </p>
+                    <p class="text-lg text-slate-600 mb-8 leading-relaxed text-justify">
+                        I have experience developing an online three-wheeler booking system and working on IoT and
+                        Arduino projects, where I combine creativity with practical problem-solving. I enjoy exploring
+                        emerging technologies and taking on new challenges to build innovative and impactful solutions.
+                    </p>
+                    <!--
+                    <div class="grid grid-cols-2 gap-6">
+                        <div class="flex items-start">
+                            <div class="flex-shrink-0 mt-1">
+                                <i class="fas fa-check-circle text-brand-accent"></i>
+                            </div>
+                            <div class="ml-3">
+                                <h4 class="text-base font-semibold text-slate-900">Clean Code</h4>
+                                <p class="text-sm text-slate-500">Maintainable & scalable</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="flex-shrink-0 mt-1">
+                                <i class="fas fa-layer-group text-brand-cyan"></i>
+                            </div>
+                            <div class="ml-3">
+                                <h4 class="text-base font-semibold text-slate-900">Modern UI/UX</h4>
+                                <p class="text-sm text-slate-500">Intuitive interfaces</p>
+                            </div>
+                        </div>
+                    </div>-->
+                </div>
+
             </div>
-        </nav>
-        <p>Copyright &#169; 2025 Dinod Deshanjana. All Rights Reserved.</p>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="py-24 bg-brand-dark relative overflow-hidden scroll-mt-20">
+        <div class="absolute inset-0 tech-grid opacity-10"></div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center mb-16 reveal">
+                <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">Technical Proficiency</h2>
+                <div class="h-1 w-20 bg-brand-accent mx-auto rounded-full"></div>
+                <p class="mt-4 text-slate-400 max-w-2xl mx-auto">
+
+                </p>
+            </div>
+
+            <div class="grid grid-cols-2 md:grid-cols-5 gap-6 reveal justify-center">
+                <!-- Skill Card 1: HTML / CSS -->
+                <div
+                    class="p-6 bg-slate-800 rounded-xl hover:-translate-y-2 transition-transform duration-300 border border-slate-700 hover:border-brand-accent group text-center">
+                    <i
+                        class="fab fa-html5 text-4xl text-orange-500 mb-4 group-hover:scale-110 transition-transform block"></i>
+                    <h3 class="text-lg font-semibold text-white">HTML / CSS</h3>
+                </div>
+
+                <!-- Skill Card 2: PHP -->
+                <div
+                    class="p-6 bg-slate-800 rounded-xl hover:-translate-y-2 transition-transform duration-300 border border-slate-700 hover:border-brand-accent group text-center">
+                    <i
+                        class="fab fa-php text-4xl text-indigo-400 mb-4 group-hover:scale-110 transition-transform block"></i>
+                    <h3 class="text-lg font-semibold text-white">PHP</h3>
+                </div>
+
+                <!-- Skill Card 3: Git -->
+                <div
+                    class="p-6 bg-slate-800 rounded-xl hover:-translate-y-2 transition-transform duration-300 border border-slate-700 hover:border-brand-accent group text-center">
+                    <i
+                        class="fab fa-git-alt text-4xl text-red-500 mb-4 group-hover:scale-110 transition-transform block"></i>
+                    <h3 class="text-lg font-semibold text-white">Git</h3>
+                </div>
+
+                <!-- Skill Card 4: SQL -->
+                <div
+                    class="p-6 bg-slate-800 rounded-xl hover:-translate-y-2 transition-transform duration-300 border border-slate-700 hover:border-brand-accent group text-center">
+                    <i
+                        class="fas fa-database text-4xl text-blue-400 mb-4 group-hover:scale-110 transition-transform block"></i>
+                    <h3 class="text-lg font-semibold text-white">SQL</h3>
+                </div>
+
+                <!-- Skill Card 5: C# -->
+                <div
+                    class="p-6 bg-slate-800 rounded-xl hover:-translate-y-2 transition-transform duration-300 border border-slate-700 hover:border-brand-accent group text-center">
+                    <i
+                        class="fas fa-laptop-code text-4xl text-purple-500 mb-4 group-hover:scale-110 transition-transform block"></i>
+                    <h3 class="text-lg font-semibold text-white">C#</h3>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="py-24 bg-slate-50 scroll-mt-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-12 reveal">
+                <div>
+                    <h2 class="text-3xl md:text-4xl font-bold text-slate-900 mb-2">Featured Projects</h2>
+                    <p class="text-slate-600">Some of my best work.</p>
+                </div>
+                <a href="https://github.com/DinodDeshanjana"
+                    class="hidden md:inline-flex items-center font-semibold text-brand-accent hover:text-brand-cyan transition-colors mt-4 md:mt-0">
+                    View GitHub <i class="fab fa-github ml-2"></i>
+                </a>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+                <!-- Project 1: Finance Dashboard -->
+                <div
+                    class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 group reveal">
+                    <!-- Image Container -->
+                    <div class="h-48 relative overflow-hidden">
+                        <!-- REPLACE THE URL BELOW WITH YOUR PROJECT IMAGE -->
+                        <img src="Cal.png" alt="Finance Dashboard"
+                            class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                        <!-- Overlay -->
+                        <div
+                            class="absolute inset-0 bg-slate-900/40 group-hover:bg-slate-900/20 transition-colors duration-300 flex items-center justify-center">
+                            <i
+                                class="fa-solid fa-graduation-cap text-4xl text-white opacity-80 group-hover:opacity-100 group-hover:scale-110 transition-all"></i>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="text-xl font-bold text-slate-900">GPA Calculator Web App</h3>
+                            <a href="https://github.com/DinodDeshanjana/GPA-Calculator"
+                                class="text-slate-400 hover:text-brand-accent"><i
+                                    class="fas fa-external-link-alt"></i></a>
+                        </div>
+                        <p class="text-slate-600 text-sm mb-4 text-justify">A lightweight GPA Calculator built with
+                            HTML, CSS, and
+                            JavaScript that allows students to add course codes, credits, and grades to instantly
+                            compute GPA.
+
+                        </p>
+                        <div class="flex flex-wrap gap-2">
+                            <span
+                                class="px-3 py-1 bg-slate-100 text-slate-600 text-xs font-medium rounded-full">HTML</span>
+                            <span
+                                class="px-3 py-1 bg-slate-100 text-slate-600 text-xs font-medium rounded-full">CSS</span>
+                            <span
+                                class="px-3 py-1 bg-slate-100 text-slate-600 text-xs font-medium rounded-full">JavaScript</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 2: Chat Application -->
+                <div
+                    class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 group reveal">
+                    <!-- Image Container -->
+                    <div class="h-48 relative overflow-hidden">
+                        <!-- REPLACE THE URL BELOW WITH YOUR PROJECT IMAGE -->
+                        <img src="E-license system.png" alt="Chat App"
+                            class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                        <!-- Overlay -->
+                        <div
+                            class="absolute inset-0 bg-slate-900/40 group-hover:bg-slate-900/20 transition-colors duration-300 flex items-center justify-center">
+                            <i
+                                class="fa-regular fa-id-card text-4xl text-white opacity-80 group-hover:opacity-100 group-hover:scale-110 transition-all"></i>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="text-xl font-bold text-slate-900">E-License Management System</h3>
+                            <a href="https://github.com/DinodDeshanjana/Elicense-System.git"
+                                class="text-slate-400 hover:text-brand-accent"><i
+                                    class="fas fa-external-link-alt"></i></a>
+                        </div>
+                        <p class="text-slate-600 text-sm mb-4 text-justify">E-License Management System — a web-based
+                            application
+                            built to simplify and modernize driver’s license applications and exam management in Sri
+                            Lanka. It provides a fast, transparent, and user-friendly way for applicants to register,
+                            apply for exams, and track their license status online.</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span
+                                class="px-3 py-1 bg-slate-100 text-slate-600 text-xs font-medium rounded-full">HTML</span>
+                            <span
+                                class="px-3 py-1 bg-slate-100 text-slate-600 text-xs font-medium rounded-full">CSS</span>
+                            <span
+                                class="px-3 py-1 bg-slate-100 text-slate-600 text-xs font-medium rounded-full">Bootstrap</span>
+                            <span
+                                class="px-3 py-1 bg-slate-100 text-slate-600 text-xs font-medium rounded-full">JavaScript</span>
+                            <span
+                                class="px-3 py-1 bg-slate-100 text-slate-600 text-xs font-medium rounded-full">PHP</span>
+                            <span
+                                class="px-3 py-1 bg-slate-100 text-slate-600 text-xs font-medium rounded-full">MySQL</span>
+                        </div>
+                    </div>
+                </div>
+
+
+                <!-- Project 2: Chat Application -->
+                <div
+                    class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 group reveal">
+                    <!-- Image Container -->
+                    <div class="h-48 relative overflow-hidden">
+                        <!-- REPLACE THE URL BELOW WITH YOUR PROJECT IMAGE -->
+                        <img src="t.png" alt="Chat App"
+                            class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                        <!-- Overlay -->
+                        <div
+                            class="absolute inset-0 bg-slate-900/40 group-hover:bg-slate-900/20 transition-colors duration-300 flex items-center justify-center">
+                            <i
+                                class="fa-solid fa-map-location-dot text-4xl text-white opacity-80 group-hover:opacity-100 group-hover:scale-110 transition-all"></i>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="text-xl font-bold text-slate-900">Three-wheeler Booking System</h3>
+                            <a href="https://github.com/DinodDeshanjana/Three-Wheeler-Rental-System-project.git"
+                                class="text-slate-400 hover:text-brand-accent"><i
+                                    class="fas fa-external-link-alt"></i></a>
+                        </div>
+                        <p class="text-slate-600 text-sm mb-4 text-justify">Built with HTML, CSS, JavaScript, PHP, and
+                            MySQL, this
+                            tuk-tuk booking system allows foreign tourists to easily book three-wheelers online. It
+                            replaces outdated booking methods with a user-friendly interface and real-time updates.</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span
+                                class="px-3 py-1 bg-slate-100 text-slate-600 text-xs font-medium rounded-full">HTML</span>
+                            <span
+                                class="px-3 py-1 bg-slate-100 text-slate-600 text-xs font-medium rounded-full">CSS</span>
+                            <span
+                                class="px-3 py-1 bg-slate-100 text-slate-600 text-xs font-medium rounded-full">JavaScript</span>
+                            <span
+                                class="px-3 py-1 bg-slate-100 text-slate-600 text-xs font-medium rounded-full">PHP</span>
+                            <span
+                                class="px-3 py-1 bg-slate-100 text-slate-600 text-xs font-medium rounded-full">MySQL</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 3: E-Commerce API -->
+                <div
+                    class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 group reveal">
+                    <!-- Image Container -->
+                    <div class="h-48 relative overflow-hidden">
+                        <!-- REPLACE THE URL BELOW WITH YOUR PROJECT IMAGE -->
+                        <img src="r.jpg" alt="E-Commerce"
+                            class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                        <!-- Overlay -->
+                        <div
+                            class="absolute inset-0 bg-slate-900/40 group-hover:bg-slate-900/20 transition-colors duration-300 flex items-center justify-center">
+                            <i
+                                class="fa-solid fa-car text-4xl text-white opacity-80 group-hover:opacity-100 group-hover:scale-110 transition-all"></i>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="text-xl font-bold text-slate-900">Arduino Robot Pet Project</h3>
+                            <a href="https://github.com/DinodDeshanjana/Arduino-Robot-Car"
+                                class="text-slate-400 hover:text-brand-accent"><i
+                                    class="fas fa-external-link-alt"></i></a>
+                        </div>
+                        <p class="text-slate-600 text-sm mb-4 text-justify">AThe Arduino Car project is a smart vehicle
+                            that can
+                            detect obstacles and be controlled remotely via mobile. It uses sensors and motors for
+                            smooth autonomous navigation.</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span
+                                class="px-3 py-1 bg-slate-100 text-slate-600 text-xs font-medium rounded-full">Arduino</span>
+                            <span
+                                class="px-3 py-1 bg-slate-100 text-slate-600 text-xs font-medium rounded-full">C++</span>
+                        </div>
+                    </div>
+                </div>
+
+
+                <!-- Project 2: Chat Application -->
+                <div
+                    class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 group reveal">
+                    <!-- Image Container -->
+                    <div class="h-48 relative overflow-hidden">
+                        <!-- REPLACE THE URL BELOW WITH YOUR PROJECT IMAGE -->
+                        <img src="p.png" alt="Chat App"
+                            class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                        <!-- Overlay -->
+                        <div
+                            class="absolute inset-0 bg-slate-900/40 group-hover:bg-slate-900/20 transition-colors duration-300 flex items-center justify-center">
+                            <i
+                                class="fa-solid fa-pizza-slice text-4xl text-white opacity-80 group-hover:opacity-100 group-hover:scale-110 transition-all"></i>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="text-xl font-bold text-slate-900">Pizza Checkout System</h3>
+                            <a href="https://github.com/DinodDeshanjana/Three-Wheeler-Rental-System-project.git"
+                                class="text-slate-400 hover:text-brand-accent"><i
+                                    class="fas fa-external-link-alt"></i></a>
+                        </div>
+                        <p class="text-slate-600 text-sm mb-4 text-justify">Built with HTML, CSS, JavaScript, PHP, and
+                            MySQL, this
+                            tuk-tuk booking system allows foreign tourists to easily book three-wheelers online. It
+                            replaces outdated booking methods with a user-friendly interface and real-time updates.</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-3 py-1 bg-slate-100 text-slate-600 text-xs font-medium rounded-full">C#
+                                (.NET Framework)</span>
+                            <span class="px-3 py-1 bg-slate-100 text-slate-600 text-xs font-medium rounded-full">Windows
+                                Forms</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="mt-8 text-center md:hidden">
+                <a href="#"
+                    class="inline-flex items-center font-semibold text-brand-accent hover:text-brand-cyan transition-colors">
+                    View GitHub <i class="fab fa-github ml-2"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-24 bg-white relative overflow-hidden">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+
+            <p class="text-slate-500 font-medium mb-2"></p>
+            <h2 class="text-4xl md:text-5xl font-bold text-brand-accent mb-12">Contact Me</h2>
+
+            <div
+                class="inline-flex flex-col md:flex-row items-center justify-center gap-6 md:gap-12 px-8 py-6 border-2 border-slate-400 rounded-full bg-white shadow-sm hover:shadow-md transition-shadow">
+
+                <!-- Email Item -->
+                <a href="mailto:dinoddeshanjana20@gmail.com" class="flex items-center gap-3 group">
+                    <div
+                        class="w-10 h-10 rounded-full bg-black text-white flex items-center justify-center group-hover:scale-110 transition-transform">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <span
+                        class="text-slate-900 font-medium text-lg group-hover:text-brand-accent transition-colors">dinoddeshanjana20@gmail.com</span>
+                </a>
+
+                <!-- Divider (Hidden on mobile) -->
+                <div class="hidden md:block w-px h-8 bg-slate-300"></div>
+
+                <!-- LinkedIn Item -->
+                <a href="https://www.linkedin.com/in/dinod-deshanjana/" class="flex items-center gap-3 group">
+                    <div
+                        class="w-10 h-10 rounded-full bg-black text-white flex items-center justify-center group-hover:scale-110 transition-transform">
+                        <i class="fab fa-linkedin-in"></i>
+                    </div>
+                    <span
+                        class="text-slate-900 font-medium text-lg group-hover:text-brand-accent transition-colors">LinkedIn</span>
+                </a>
+
+                <!-- Divider (Hidden on mobile) -->
+                <div class="hidden md:block w-px h-8 bg-slate-300"></div>
+
+                <!-- GitHub Item -->
+                <a href="https://github.com/DinodDeshanjana" class="flex items-center gap-3 group">
+                    <div
+                        class="w-10 h-10 rounded-full bg-black text-white flex items-center justify-center group-hover:scale-110 transition-transform">
+                        <i class="fab fa-github"></i>
+                    </div>
+                    <span
+                        class="text-slate-900 font-medium text-lg group-hover:text-brand-accent transition-colors">GitHub</span>
+                </a>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-slate-950 py-8 border-t border-slate-900">
+        <div class="max-w-7xl mx-auto px-4 text-center">
+            <p class="text-slate-500 text-sm">
+                &copy; <span id="year"></span> Dinod Deshanjana. Designed & Built with
+                and Code.
+            </p>
+        </div>
     </footer>
-    <script src="script.js"></script>
+
+    <script>
+        // Set dynamic year
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        // Mobile Menu Toggle
+        const btn = document.getElementById('mobile-menu-btn');
+        const menu = document.getElementById('mobile-menu');
+
+        btn.addEventListener('click', () => {
+            menu.classList.toggle('hidden');
+        });
+
+        // Close mobile menu on link click
+        menu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                menu.classList.add('hidden');
+            });
+        });
+
+        // Scroll Reveal Animation using Intersection Observer
+        const revealElements = document.querySelectorAll('.reveal');
+
+        const revealCallback = (entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                    observer.unobserve(entry.target); // Only animate once
+                }
+            });
+        };
+
+        const revealOptions = {
+            threshold: 0.15,
+            rootMargin: "0px 0px -50px 0px"
+        };
+
+        const revealObserver = new IntersectionObserver(revealCallback, revealOptions);
+
+        revealElements.forEach(el => {
+            revealObserver.observe(el);
+        });
+    </script>
 </body>
+
 </html>
